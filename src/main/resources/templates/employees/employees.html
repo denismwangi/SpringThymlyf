@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org" 
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+ layout:decorator="layout">
+<head>
+<title>Employee</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+<button class="btn btn-info" ><a th:href = "@{/newemployee}" style="color:white;">Add employee</a></button>
+<hr>
+<div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="employee : ${listEmployees}">
+      <th scope="row">1</th>
+      <td th:text="${employee.firstname}"></td>
+      <td th:text="${employee.lastname}"></td>
+      <td th:text="${employee.email}"></td>
+      <td><a th:href="@{/update_employee/{id}(id=${employee.id})}" class="btn btn-primary">Update</a></td>
+      <td><a th:href="@{/delete_employee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
